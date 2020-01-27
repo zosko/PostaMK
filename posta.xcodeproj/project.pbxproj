@@ -14,19 +14,26 @@
 		6D948BDB1FB0AD0000A8D551 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D948BD91FB0AD0000A8D551 /* LaunchScreen.storyboard */; };
 		6D948BDE1FB0AD0000A8D551 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D948BDD1FB0AD0000A8D551 /* main.m */; };
 		6D948BEC1FB0B61500A8D551 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D948BEB1FB0B61500A8D551 /* XMLReader.m */; };
-		6DB00F98206E731600AF8D24 /* g@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F8C206E731600AF8D24 /* g@3x.png */; };
-		6DB00F99206E731600AF8D24 /* s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F8D206E731600AF8D24 /* s@3x.png */; };
-		6DB00F9A206E731600AF8D24 /* i.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F8E206E731600AF8D24 /* i.png */; };
-		6DB00F9B206E731600AF8D24 /* i@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F8F206E731600AF8D24 /* i@2x.png */; };
-		6DB00F9C206E731600AF8D24 /* i@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F90206E731600AF8D24 /* i@3x.png */; };
-		6DB00F9D206E731600AF8D24 /* s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F91206E731600AF8D24 /* s@2x.png */; };
-		6DB00F9E206E731600AF8D24 /* g@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F92206E731600AF8D24 /* g@2x.png */; };
-		6DB00F9F206E731600AF8D24 /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F93206E731600AF8D24 /* x.png */; };
-		6DB00FA0206E731600AF8D24 /* x@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F94206E731600AF8D24 /* x@3x.png */; };
-		6DB00FA1206E731600AF8D24 /* x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F95206E731600AF8D24 /* x@2x.png */; };
-		6DB00FA2206E731600AF8D24 /* s.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F96206E731600AF8D24 /* s.png */; };
-		6DB00FA3206E731600AF8D24 /* g.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB00F97206E731600AF8D24 /* g.png */; };
+		6DA231F120C563E900DB7B14 /* postaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA231F020C563E900DB7B14 /* postaTests.m */; };
+		6DA231FF20C56B1200DB7B14 /* postaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA231FE20C56B1200DB7B14 /* postaUITests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DA231F320C563E900DB7B14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D948BC31FB0AD0000A8D551 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D948BCA1FB0AD0000A8D551;
+			remoteInfo = posta;
+		};
+		6DA2320120C56B1200DB7B14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D948BC31FB0AD0000A8D551 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D948BCA1FB0AD0000A8D551;
+			remoteInfo = posta;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6D948BCB1FB0AD0000A8D551 /* posta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = posta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,22 +48,30 @@
 		6D948BDD1FB0AD0000A8D551 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6D948BEA1FB0B61500A8D551 /* XMLReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		6D948BEB1FB0B61500A8D551 /* XMLReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
-		6DB00F8C206E731600AF8D24 /* g@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "g@3x.png"; sourceTree = "<group>"; };
-		6DB00F8D206E731600AF8D24 /* s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s@3x.png"; sourceTree = "<group>"; };
-		6DB00F8E206E731600AF8D24 /* i.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = i.png; sourceTree = "<group>"; };
-		6DB00F8F206E731600AF8D24 /* i@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "i@2x.png"; sourceTree = "<group>"; };
-		6DB00F90206E731600AF8D24 /* i@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "i@3x.png"; sourceTree = "<group>"; };
-		6DB00F91206E731600AF8D24 /* s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s@2x.png"; sourceTree = "<group>"; };
-		6DB00F92206E731600AF8D24 /* g@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "g@2x.png"; sourceTree = "<group>"; };
-		6DB00F93206E731600AF8D24 /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x.png; sourceTree = "<group>"; };
-		6DB00F94206E731600AF8D24 /* x@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@3x.png"; sourceTree = "<group>"; };
-		6DB00F95206E731600AF8D24 /* x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@2x.png"; sourceTree = "<group>"; };
-		6DB00F96206E731600AF8D24 /* s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s.png; sourceTree = "<group>"; };
-		6DB00F97206E731600AF8D24 /* g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g.png; sourceTree = "<group>"; };
+		6DA231EE20C563E900DB7B14 /* postaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = postaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA231F020C563E900DB7B14 /* postaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = postaTests.m; sourceTree = "<group>"; };
+		6DA231F220C563E900DB7B14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DA231FC20C56B1200DB7B14 /* postaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = postaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA231FE20C56B1200DB7B14 /* postaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = postaUITests.m; sourceTree = "<group>"; };
+		6DA2320020C56B1200DB7B14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6D948BC81FB0AD0000A8D551 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DA231EB20C563E900DB7B14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DA231F920C56B1200DB7B14 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -70,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				6D948BCD1FB0AD0000A8D551 /* posta */,
+				6DA231EF20C563E900DB7B14 /* postaTests */,
+				6DA231FD20C56B1200DB7B14 /* postaUITests */,
 				6D948BCC1FB0AD0000A8D551 /* Products */,
 				6D948BE71FB0B54F00A8D551 /* Frameworks */,
 			);
@@ -79,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				6D948BCB1FB0AD0000A8D551 /* posta.app */,
+				6DA231EE20C563E900DB7B14 /* postaTests.xctest */,
+				6DA231FC20C56B1200DB7B14 /* postaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,11 +105,10 @@
 		6D948BCD1FB0AD0000A8D551 /* posta */ = {
 			isa = PBXGroup;
 			children = (
-				6DB00F8B206E731600AF8D24 /* AlternativeIcons */,
 				6D948BCE1FB0AD0000A8D551 /* AppDelegate.h */,
+				6D948BCF1FB0AD0000A8D551 /* AppDelegate.m */,
 				6D948BEA1FB0B61500A8D551 /* XMLReader.h */,
 				6D948BEB1FB0B61500A8D551 /* XMLReader.m */,
-				6D948BCF1FB0AD0000A8D551 /* AppDelegate.m */,
 				6D948BD11FB0AD0000A8D551 /* ViewController.h */,
 				6D948BD21FB0AD0000A8D551 /* ViewController.m */,
 				6D948BD41FB0AD0000A8D551 /* Main.storyboard */,
@@ -109,23 +127,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6DB00F8B206E731600AF8D24 /* AlternativeIcons */ = {
+		6DA231EF20C563E900DB7B14 /* postaTests */ = {
 			isa = PBXGroup;
 			children = (
-				6DB00F8C206E731600AF8D24 /* g@3x.png */,
-				6DB00F8D206E731600AF8D24 /* s@3x.png */,
-				6DB00F8E206E731600AF8D24 /* i.png */,
-				6DB00F8F206E731600AF8D24 /* i@2x.png */,
-				6DB00F90206E731600AF8D24 /* i@3x.png */,
-				6DB00F91206E731600AF8D24 /* s@2x.png */,
-				6DB00F92206E731600AF8D24 /* g@2x.png */,
-				6DB00F93206E731600AF8D24 /* x.png */,
-				6DB00F94206E731600AF8D24 /* x@3x.png */,
-				6DB00F95206E731600AF8D24 /* x@2x.png */,
-				6DB00F96206E731600AF8D24 /* s.png */,
-				6DB00F97206E731600AF8D24 /* g.png */,
+				6DA231F020C563E900DB7B14 /* postaTests.m */,
+				6DA231F220C563E900DB7B14 /* Info.plist */,
 			);
-			path = AlternativeIcons;
+			path = postaTests;
+			sourceTree = "<group>";
+		};
+		6DA231FD20C56B1200DB7B14 /* postaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6DA231FE20C56B1200DB7B14 /* postaUITests.m */,
+				6DA2320020C56B1200DB7B14 /* Info.plist */,
+			);
+			path = postaUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +165,42 @@
 			productReference = 6D948BCB1FB0AD0000A8D551 /* posta.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6DA231ED20C563E900DB7B14 /* postaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DA231F720C563E900DB7B14 /* Build configuration list for PBXNativeTarget "postaTests" */;
+			buildPhases = (
+				6DA231EA20C563E900DB7B14 /* Sources */,
+				6DA231EB20C563E900DB7B14 /* Frameworks */,
+				6DA231EC20C563E900DB7B14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DA231F420C563E900DB7B14 /* PBXTargetDependency */,
+			);
+			name = postaTests;
+			productName = postaTests;
+			productReference = 6DA231EE20C563E900DB7B14 /* postaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6DA231FB20C56B1200DB7B14 /* postaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DA2320520C56B1200DB7B14 /* Build configuration list for PBXNativeTarget "postaUITests" */;
+			buildPhases = (
+				6DA231F820C56B1200DB7B14 /* Sources */,
+				6DA231F920C56B1200DB7B14 /* Frameworks */,
+				6DA231FA20C56B1200DB7B14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DA2320220C56B1200DB7B14 /* PBXTargetDependency */,
+			);
+			name = postaUITests;
+			productName = postaUITests;
+			productReference = 6DA231FC20C56B1200DB7B14 /* postaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -166,6 +219,16 @@
 							};
 						};
 					};
+					6DA231ED20C563E900DB7B14 = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6D948BCA1FB0AD0000A8D551;
+					};
+					6DA231FB20C56B1200DB7B14 = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6D948BCA1FB0AD0000A8D551;
+					};
 				};
 			};
 			buildConfigurationList = 6D948BC61FB0AD0000A8D551 /* Build configuration list for PBXProject "posta" */;
@@ -182,6 +245,8 @@
 			projectRoot = "";
 			targets = (
 				6D948BCA1FB0AD0000A8D551 /* posta */,
+				6DA231ED20C563E900DB7B14 /* postaTests */,
+				6DA231FB20C56B1200DB7B14 /* postaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -191,21 +256,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DB00F9F206E731600AF8D24 /* x.png in Resources */,
-				6DB00FA2206E731600AF8D24 /* s.png in Resources */,
 				6D948BDB1FB0AD0000A8D551 /* LaunchScreen.storyboard in Resources */,
-				6DB00FA0206E731600AF8D24 /* x@3x.png in Resources */,
-				6DB00F99206E731600AF8D24 /* s@3x.png in Resources */,
-				6DB00FA1206E731600AF8D24 /* x@2x.png in Resources */,
-				6DB00FA3206E731600AF8D24 /* g.png in Resources */,
-				6DB00F9D206E731600AF8D24 /* s@2x.png in Resources */,
-				6DB00F98206E731600AF8D24 /* g@3x.png in Resources */,
-				6DB00F9A206E731600AF8D24 /* i.png in Resources */,
-				6DB00F9B206E731600AF8D24 /* i@2x.png in Resources */,
-				6DB00F9E206E731600AF8D24 /* g@2x.png in Resources */,
 				6D948BD81FB0AD0000A8D551 /* Assets.xcassets in Resources */,
 				6D948BD61FB0AD0000A8D551 /* Main.storyboard in Resources */,
-				6DB00F9C206E731600AF8D24 /* i@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DA231EC20C563E900DB7B14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DA231FA20C56B1200DB7B14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +290,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DA231EA20C563E900DB7B14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DA231F120C563E900DB7B14 /* postaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DA231F820C56B1200DB7B14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DA231FF20C56B1200DB7B14 /* postaUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DA231F420C563E900DB7B14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D948BCA1FB0AD0000A8D551 /* posta */;
+			targetProxy = 6DA231F320C563E900DB7B14 /* PBXContainerItemProxy */;
+		};
+		6DA2320220C56B1200DB7B14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D948BCA1FB0AD0000A8D551 /* posta */;
+			targetProxy = 6DA2320120C56B1200DB7B14 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6D948BD41FB0AD0000A8D551 /* Main.storyboard */ = {
@@ -379,6 +475,80 @@
 			};
 			name = Release;
 		};
+		6DA231F520C563E900DB7B14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RXDLA8Y5J4;
+				INFOPLIST_FILE = postaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = us.g6.testapp.postaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/posta.app/posta";
+			};
+			name = Debug;
+		};
+		6DA231F620C563E900DB7B14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RXDLA8Y5J4;
+				INFOPLIST_FILE = postaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = us.g6.testapp.postaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/posta.app/posta";
+			};
+			name = Release;
+		};
+		6DA2320320C56B1200DB7B14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RXDLA8Y5J4;
+				INFOPLIST_FILE = postaUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = us.g6.testapp.postaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = posta;
+			};
+			name = Debug;
+		};
+		6DA2320420C56B1200DB7B14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RXDLA8Y5J4;
+				INFOPLIST_FILE = postaUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = us.g6.testapp.postaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = posta;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -396,6 +566,24 @@
 			buildConfigurations = (
 				6D948BE21FB0AD0000A8D551 /* Debug */,
 				6D948BE31FB0AD0000A8D551 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DA231F720C563E900DB7B14 /* Build configuration list for PBXNativeTarget "postaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DA231F520C563E900DB7B14 /* Debug */,
+				6DA231F620C563E900DB7B14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DA2320520C56B1200DB7B14 /* Build configuration list for PBXNativeTarget "postaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DA2320320C56B1200DB7B14 /* Debug */,
+				6DA2320420C56B1200DB7B14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

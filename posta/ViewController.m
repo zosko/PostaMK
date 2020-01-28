@@ -203,7 +203,6 @@
     
     cell.textLabel.text = dictItem[@"tracking"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@days) %@",[self daysAgo:dictItem[@"time"]],dictItem[@"detail"]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",dictItem[@"detail"]];
     cell.accessoryType = [dictItem[@"arrived"] boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;

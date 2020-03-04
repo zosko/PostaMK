@@ -8,30 +8,58 @@
 
 #import "ViewController.h"
 #import "XMLReader.h"
+#import "MBProgressHUD.h"
 
+@import CloudKit;
 @import SafariServices;
 
 @interface ViewController () <UITableViewDelegate,UITableViewDataSource>{
-    NSMutableArray *arrTracking;
+    NSArray *arrTracking;
     IBOutlet UITableView *tblTracking;
 }
 
 @end
 
 @implementation ViewController
+
+-(void)showProgress{
+    [NSOperationQueue.mainQueue addOperationWithBlock:^{
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }];
+}
+-(void)hideProgress{
+    [NSOperationQueue.mainQueue addOperationWithBlock:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+}
+-(void)getTrackings{
+    [self showProgress];
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
+        CKQuery *query = [CKQuery.alloc initWithRecordType:@"TrackingData" predicate:predicate];
+        query.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        [CKContainer.defaultContainer.publicCloudDatabase performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+            if(!error){
+                [NSOperationQueue.mainQueue addOperationWithBlock:^{
+                    [self hideProgress];
+                    arrTracking = results;
+                    [tblTracking reloadData];
+                }];
+            }
+        }];
+    });
+}
 -(NSString *)daysAgo:(NSDate *)startDate{
     NSDate *endDate = NSDate.date;
-    
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
-                                                        fromDate:startDate
-                                                          toDate:endDate
-                                                         options:0];
+    NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay fromDate:startDate toDate:endDate options:0];
     return [NSString stringWithFormat:@"%ld",(long)components.day];
 }
 -(IBAction)onBtnGenerate:(id)sender{
     NSMutableArray *strTrack = NSMutableArray.new;
-    for(NSDictionary *dict in arrTracking){
+    for(CKRecord *dict in arrTracking){
         NSString *strTrackingNnumber = [NSString stringWithFormat:@"%@",dict[@"tracking"]];
         
         if(![dict[@"arrived"] boolValue]){
@@ -50,15 +78,17 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        [arrTracking addObject:@{@"tracking":[NSString stringWithFormat:@"%@",alert.textFields[0].text.uppercaseString],
-                                 @"detail":[NSString stringWithFormat:@"%@",alert.textFields[1].text],
-                                 @"time":NSDate.date
-                                 }];
-        [tblTracking reloadData];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:arrTracking forKey:@"database"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
+        CKRecord *record = [[CKRecord alloc] initWithRecordType:@"TrackingData"];
+        record[@"detail"] = [NSString stringWithFormat:@"%@",alert.textFields[1].text];
+        record[@"tracking"] = [NSString stringWithFormat:@"%@",alert.textFields[0].text.uppercaseString];
+        record[@"arrived"] = @(NO);
+        [self showProgress];
+        [[CKContainer defaultContainer].publicCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
+            [self hideProgress];
+            if(!error){
+                [self getTrackings];
+            }
+        }];
     }];
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
@@ -78,11 +108,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self showProgress];
     NSString *strPath = [NSString stringWithFormat:@"http://www.posta.com.mk/tnt/api/query?id=%@",arrTracking[indexPath.row][@"tracking"]];
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:strPath] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            
+        [self hideProgress];
+        [NSOperationQueue.mainQueue addOperationWithBlock:^{
             NSError *error = nil;
             NSDictionary *dict = [XMLReader dictionaryForXMLData:data options:XMLReaderOptionsProcessNamespaces error:&error];
             
@@ -124,26 +154,34 @@
             }];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
-        });
+        }];
         
     }] resume];
 }
--(nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
-        
+- (nullable UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIContextualAction *editAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:@"Edit" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        NSDictionary *dictItem = arrTracking[indexPath.row];
+        CKRecord *dictItem = arrTracking[indexPath.row];
         
         UIAlertAction *actionz = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showProgress];
+            [[CKContainer defaultContainer].publicCloudDatabase fetchRecordWithID:dictItem.recordID completionHandler:^(CKRecord *record, NSError *error) {
+                [self hideProgress];
+                if (error) {
+                    return;
+                }
+                [NSOperationQueue.mainQueue addOperationWithBlock:^{
+                    [self showProgress];
+                    record[@"tracking"] = [NSString stringWithFormat:@"%@",alert.textFields[0].text.uppercaseString];
+                    record[@"detail"] = [NSString stringWithFormat:@"%@",alert.textFields[1].text];
+                    [[CKContainer defaultContainer].publicCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
+                        [self hideProgress];
+                        [self getTrackings];
+                    }];
+                }];
+            }];
             
-            [arrTracking replaceObjectAtIndex:indexPath.row withObject:@{@"tracking":[NSString stringWithFormat:@"%@",alert.textFields[0].text.uppercaseString],
-                                                                         @"detail":[NSString stringWithFormat:@"%@",alert.textFields[1].text],
-                                                                         @"time":dictItem[@"time"]
-                                                                         }];
-            [tblTracking reloadData];
-            
-            [[NSUserDefaults standardUserDefaults] setObject:arrTracking forKey:@"database"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
             
         }];
         
@@ -161,33 +199,39 @@
         [alert addAction:actionz];
         [alert addAction:action1];
         [self presentViewController:alert animated:YES completion:nil];
-        
     }];
     
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Remove" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
-        [arrTracking removeObjectAtIndex:indexPath.row];
-        [tblTracking reloadData];
-        [[NSUserDefaults standardUserDefaults] setObject:arrTracking forKey:@"database"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+    UIContextualAction *removeAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Remove" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        CKRecord *dictItem = arrTracking[indexPath.row];
         
+        [self showProgress];
+        [[CKContainer defaultContainer].publicCloudDatabase deleteRecordWithID:dictItem.recordID completionHandler:^(CKRecordID *recordID, NSError *error) {
+            [self hideProgress];
+            [self getTrackings];
+        }];
     }];
     
-    UITableViewRowAction *arivedAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:[arrTracking[indexPath.row][@"arrived"] boolValue] ? @"Not Arrived" : @"Arrived" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
-        NSDictionary *dictItem = arrTracking[indexPath.row];
-        [arrTracking replaceObjectAtIndex:indexPath.row withObject:@{@"tracking":dictItem[@"tracking"],
-                                                                     @"detail":dictItem[@"detail"],
-                                                                     @"time":dictItem[@"time"],
-                                                                     @"arrived":@(![dictItem[@"arrived"] boolValue])
-                                                                     }];
-        [tblTracking reloadData];
+    UIContextualAction *arrivedAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:[arrTracking[indexPath.row][@"arrived"] boolValue] ? @"Not Arrived" : @"Arrived" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        CKRecord *dictItem = arrTracking[indexPath.row];
         
-        [[NSUserDefaults standardUserDefaults] setObject:arrTracking forKey:@"database"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
+        [self showProgress];
+        [[CKContainer defaultContainer].publicCloudDatabase fetchRecordWithID:dictItem.recordID completionHandler:^(CKRecord *record, NSError *error) {
+            [self hideProgress];
+            if (error) {
+                return;
+            }
+            record[@"arrived"] = @(![dictItem[@"arrived"] boolValue]);
+            
+            [self showProgress];
+            [[CKContainer defaultContainer].publicCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
+                [self hideProgress];
+                [self getTrackings];
+            }];
+        }];
     }];
-    arivedAction.backgroundColor = UIColor.blueColor;
+    arrivedAction.backgroundColor = UIColor.blueColor;
     
-    return @[editAction, arivedAction, deleteAction];
+    return [UISwipeActionsConfiguration configurationWithActions:@[editAction,removeAction,arrivedAction]];
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleNone;
@@ -199,10 +243,10 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tracking" forIndexPath:indexPath];
     
-    NSDictionary *dictItem = arrTracking[indexPath.row];
+    CKRecord *dictItem = arrTracking[indexPath.row];
     
     cell.textLabel.text = dictItem[@"tracking"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@days) %@",[self daysAgo:dictItem[@"time"]],dictItem[@"detail"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@days) %@",[self daysAgo:dictItem.creationDate],dictItem[@"detail"]];
     cell.accessoryType = [dictItem[@"arrived"] boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
@@ -211,8 +255,7 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    arrTracking = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"database"]];
-    [tblTracking reloadData];
+    [self getTrackings];
 }
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
